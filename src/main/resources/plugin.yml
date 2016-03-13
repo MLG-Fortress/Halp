@@ -1,0 +1,7 @@
+name: Halp
+version: 0.1
+author: LaxWasHere
+main: net.poweredbyscience.halp.Halp
+description: A more readable version of WGReport
+commands:
+  halp:
