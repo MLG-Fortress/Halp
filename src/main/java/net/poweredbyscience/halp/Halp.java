@@ -10,5 +10,4 @@ public class Halp extends JavaPlugin {
     public void onEnable() {
         getCommand("halp").setExecutor(new HalpCommand(this));
     }
-
 }

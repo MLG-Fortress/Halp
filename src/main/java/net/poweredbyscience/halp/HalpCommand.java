@@ -16,9 +16,21 @@ public class HalpCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String s, String[] strings) {
+    public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (sender.hasPermission("halpme.halp")) {
-            sender.sendMessage("Report link: " + NSAConnector.upload(new InfoBuilder().Build())+".halp");
+            if (args.length >= 1) {
+                if (args[0].equalsIgnoreCase("me")) {
+                    sender.sendMessage("Report link: " + NSAConnector.upload(new InfoBuilder().Build("-"))+".halp");
+                }
+                if (args[0].equalsIgnoreCase("all")) {
+                    sender.sendMessage("Report link: " + NSAConnector.upload(new InfoBuilder().Build("k"))+".halp");
+                }
+//                if (args[0].equalsIgnoreCase("debug")) {
+//                    new InfoBuilder().Debug();
+//                }
+            } else {
+                sender.sendMessage("Usage: /halp <me,all>");
+            }
         }
         return false;
     }
