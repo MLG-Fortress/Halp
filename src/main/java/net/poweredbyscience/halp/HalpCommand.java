@@ -20,7 +20,7 @@ public class HalpCommand implements CommandExecutor {
         if (sender.hasPermission("halpme.halp")) {
             if (args.length >= 1) {
                 if (args[0].equalsIgnoreCase("me")) {
-                    sender.sendMessage("Report link: " + NSAConnector.upload(new InfoBuilder().Build("-"))+".halp");
+                    sender.sendMessage("Report link: " + NSAConnector.upload(new InfoBuilder().Build("-")));
                 }
                 if (args[0].equalsIgnoreCase("all")) {
                     sender.sendMessage("Report link: " + NSAConnector.upload(new InfoBuilder().Build("k"))+".halp");

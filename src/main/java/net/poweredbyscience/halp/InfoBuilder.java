@@ -50,24 +50,13 @@ public class InfoBuilder {
                 } catch (IOException e) {
                     b.append("No files" + "\n  ");
                 }
-                b.append("\n  ");
+                b.append("\n   ");
+            } else {
+                b.append("\n   ");
             }
         }
         b.append("\n--- End of halp file ---");
         return b.toString();
     }
 
-    public void Debug() {
-        System.out.println("Printing Debug");
-        for (Plugin p : Bukkit.getServer().getPluginManager().getPlugins()) {
-            try {
-                Files.walk(Paths.get(p.getDataFolder().getCanonicalPath()))
-                        .filter(Files::isRegularFile)
-                        .map(Path::toFile)
-                        .collect(Collectors.toList()).stream().filter(file -> file.getName().endsWith(".yml")).forEach(file -> System.out.println(file.getName()));
-            } catch (IOException e) {
-                //return "No files";
-            }
-        }
-    }
 }
