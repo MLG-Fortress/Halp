@@ -46,7 +46,7 @@ public class InfoBuilder {
                     Files.walk(Paths.get(p.getDataFolder().getCanonicalPath()))
                             .filter(Files::isRegularFile)
                             .map(Path::toFile)
-                            .collect(Collectors.toList()).stream().filter(file -> file.getName().endsWith(".yml")).forEach(file -> b.append(file.getName() + ": " + NSAConnector.upload(file)).append("\n     "));
+                            .collect(Collectors.toList()).stream().filter(file -> file.getName().endsWith(".yml") || file.getName().endsWith(".log")).forEach(file -> b.append(file.getName() + ": " + NSAConnector.upload(file)).append("\n     "));
                 } catch (IOException e) {
                     b.append("No files" + "\n  ");
                 }

@@ -7,7 +7,11 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Halp extends JavaPlugin {
 
+    public static String service;
+
     public void onEnable() {
+        saveDefaultConfig();
+        service = getConfig().getString("service");
         getCommand("halp").setExecutor(new HalpCommand(this));
     }
 }
