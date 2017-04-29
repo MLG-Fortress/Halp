@@ -1,7 +1,7 @@
 name: Halp
-version: 0.2
+version: 0.3
 author: LaxWasHere
-main: net.poweredbyscience.halp.Halp
+main: net.poweredbyscience.halp.Bukkit.HalpBukkit
 description: A halp plugin for halpers
 commands:
   halp:

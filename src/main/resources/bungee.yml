@@ -1,0 +1,7 @@
+name: Halp
+version: 0.3
+author: LaxWasHere
+main: net.poweredbyscience.halp.Bungee.HalpBungee
+description: A halp plugin for halpers
+commands:
+  bhalp:

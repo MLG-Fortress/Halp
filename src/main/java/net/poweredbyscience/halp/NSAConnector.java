@@ -3,6 +3,7 @@ package net.poweredbyscience.halp;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import net.poweredbyscience.halp.Bukkit.HalpBukkit;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedOutputStream;
@@ -24,17 +25,7 @@ import java.util.regex.Pattern;
 public class NSAConnector {
 
     public static String gistJson = "{\"description\": \"the description for this gist\", \"public\": false, \"files\": { \"Halp.file\": { \"content\": \"%CONTENT%\" } } }"; //heh heh heh
-
-    public static void main(String[] args) {
-        //upload("My milkshake brings all the boys to the yard.", "GIST");
-        File file = new File("C:/Users/Lax/Desktop/testserver/logs/latest.log");
-        try {
-            System.out.println(serializeFile(new Scanner(file).useDelimiter("\\A").next()));
-            System.out.println("Done");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+    public static String service;
 
     public static String upload(String string, String service) {
         if (service.equalsIgnoreCase("HASTE")) {
@@ -52,7 +43,7 @@ public class NSAConnector {
                 final Reader reader = new InputStreamReader(con.getInputStream());
                 final BufferedReader br = new BufferedReader(reader);
                 String datLine = br.readLine();
-                return parseData(datLine);
+                return parseData(datLine, "");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -73,7 +64,7 @@ public class NSAConnector {
                 final Reader reader = new InputStreamReader(con.getInputStream());
                 final BufferedReader br = new BufferedReader(reader);
                 String datLine = br.readLine();
-                return parseData(datLine);
+                return parseData(datLine, "gist");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -83,9 +74,9 @@ public class NSAConnector {
         return "Something went wrong. Please check the console";
     }
 
-    public static String upload(File sensitiveData) {
+    public static String upload(File sensitiveData, String service) {
         try {
-            return upload(new Scanner(sensitiveData).useDelimiter("\\A").next(), Halp.service);
+            return upload(new Scanner(sensitiveData).useDelimiter("\\A").next(), service);
         } catch (FileNotFoundException e) {
             return "File missing";
         }
@@ -103,11 +94,11 @@ public class NSAConnector {
         return jo.toString();
     }
 
-    public static String parseData(String datLine) {
-        if (Halp.service.equalsIgnoreCase("gist")) {
+    public static String parseData(String datLine, String service) {
+        if (service.equalsIgnoreCase("gist")) {
             JsonElement taco = new JsonParser().parse(datLine);
             JsonObject  burrito = taco.getAsJsonObject();
-            return (burrito.get("html_url").toString());
+            return (burrito.get("html_url").toString().replace("\"",""));
         }
         Matcher m = Pattern.compile("^\\{\"key\":\"(.*)\"}$").matcher(datLine);
         if (m.matches()) {
