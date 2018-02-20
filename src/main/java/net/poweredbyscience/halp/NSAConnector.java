@@ -29,6 +29,7 @@ public class NSAConnector {
 
     public static String upload(String string, String service) {
         string = string.replaceAll("([0-9]{1,3}\\.){3}[0-9]{1,3}", "REDACTED");
+        string = string.replaceAll(".*\\[iPAV].*", "");
         if (service.equalsIgnoreCase("HASTE")) {
             try {
                 URL youareell = new URL("https://hasteb.in/documents");
