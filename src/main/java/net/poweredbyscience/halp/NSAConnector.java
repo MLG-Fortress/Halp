@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.poweredbyscience.halp.Bukkit.HalpBukkit;
+import org.apache.commons.lang.StringUtils;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedOutputStream;
@@ -28,6 +29,7 @@ public class NSAConnector {
     public static String service;
 
     public static String upload(String string, String service) {
+        string = StringUtils.right(string, 2000);
         string = string.replaceAll("([0-9]{1,3}\\.){3}[0-9]{1,3}", "REDACTED");
         string = string.replaceAll(".*\\[iPAV].*", "");
         if (service.equalsIgnoreCase("HASTE")) {
