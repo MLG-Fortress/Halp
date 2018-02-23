@@ -44,8 +44,6 @@ public class NSAConnector {
                 final BufferedReader br = new BufferedReader(reader);
                 String datLine = br.readLine();
                 return parseData(datLine, "");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -65,8 +63,6 @@ public class NSAConnector {
                 final BufferedReader br = new BufferedReader(reader);
                 String datLine = br.readLine();
                 return parseData(datLine, "gist");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }

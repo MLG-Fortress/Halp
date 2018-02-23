@@ -26,13 +26,13 @@ public class HalpBukkit extends JavaPlugin {
         if (sender.hasPermission("halpme.halp")) {
             if (args.length >= 1) {
                 if (args[0].equalsIgnoreCase("me")) {
-                    sender.sendMessage("Report link: " + NSAConnector.upload(new BukkitInfoBuilder().Build("-"), HalpBukkit.service));
+                    Bukkit.getScheduler().runTaskAsynchronously(this, () -> sender.sendMessage("Report link: " + NSAConnector.upload(new BukkitInfoBuilder().Build("-"), HalpBukkit.service)));
                 }
                 if (args[0].equalsIgnoreCase("all")) {
-                    sender.sendMessage("Report link: " + NSAConnector.upload(new BukkitInfoBuilder().Build("k"), HalpBukkit.service));
+                    Bukkit.getScheduler().runTaskAsynchronously(this, () -> sender.sendMessage("Report link: " + NSAConnector.upload(new BukkitInfoBuilder().Build("k"), HalpBukkit.service)));
                 }
                 if (args[0].equalsIgnoreCase("log")) {
-                    sender.sendMessage("Uploaded log: " + NSAConnector.upload(new File(Bukkit.getPluginManager().getPlugin("Halp").getDataFolder(),"../../logs/latest.log"), HalpBukkit.service));
+                    Bukkit.getScheduler().runTaskAsynchronously(this, () -> sender.sendMessage("Uploaded log: " + NSAConnector.upload(new File(Bukkit.getPluginManager().getPlugin("Halp").getDataFolder(),"../../logs/latest.log"), HalpBukkit.service)));
                 }
 //                if (args[0].equalsIgnoreCase("debug")) {
 //                    new InfoBuilder().Debug();
